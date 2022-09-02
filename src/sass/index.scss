@@ -4,9 +4,17 @@
 .container {
     max-width: 50%;
     padding: 25px 0;
+    position: relative;
 }
 
 .rating {
-    color: orange;
+    background-color: orange;
     border-radius: 6px;
+    padding: 0 5px;
+}
+
+.btn-warning {
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }
