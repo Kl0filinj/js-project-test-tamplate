@@ -1,14 +1,40 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap w/ Parcel</title>
     <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
+    <script type="module" src="./js/index.js"></script>
   </head>
   <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <div class="container">
+      <h2>Добавить фильм</h2>
+      <form class="row g-3" id="film-form">
+        <div class="col-md-6">
+          <label for="film" class="form-label">Название фильма</label>
+          <input type="text" class="form-control" id="film" />
+        </div>
+        <div class="col-md-6">
+          <label for="rating" class="form-label">Рейтинг фильма</label>
+          <input type="text" class="form-control" id="rating" />
+        </div>
+        <div class="col-12">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            id="film-submit-btn"
+            disabled
+          >
+            Добавить Фильм
+          </button>
+        </div>
+      </form>
+      <hr />
+      <h2>Список ваших фильмов</h2>
+      <div>
+        <ol id="list"></ol>
+      </div>
+    </div>
   </body>
 </html>

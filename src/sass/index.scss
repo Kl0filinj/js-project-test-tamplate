@@ -1,2 +1,12 @@
 @import './common';
-@import './example';
+@import '~bootstrap/scss/bootstrap';
+
+.container {
+    max-width: 50%;
+    padding: 25px 0;
+}
+
+.rating {
+    color: orange;
+    border-radius: 6px;
+}
