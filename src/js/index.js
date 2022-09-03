@@ -1,4 +1,4 @@
-import { validForm } from './utils';
+import { validForm, onOpenModal } from './utils';
 import { Film } from './film';
 import * as bootstrap from 'bootstrap';
 
@@ -9,12 +9,16 @@ const refs = {
   filmSubmitBtn: document.getElementById('film-submit-btn'),
   authModalBtn: document.getElementById('my-modal-btn'),
   authModal: document.getElementById('my-modal'),
+  // openModalBtn: document.getElementById('my-modal-btn'),
 };
-
+console.log(refs.authModalBtn);
 refs.authModalBtn.addEventListener('click', () => {
-  refs.authModal.show;
+  // refs.authModal.show;
+  // onOpenModal();
 });
+// refs.authModalBtn.addEventListener('click', onOpenModal);
 window.addEventListener('load', Film.renderFilmList);
+// refs.openModalBtn.addEventListener('click', onOpenModal);
 refs.filmForm.addEventListener('submit', filmSubmitHandler);
 refs.filmForm.addEventListener('input', () => {
   refs.filmSubmitBtn.disabled = !validForm(
