@@ -16,7 +16,7 @@ refs.authModalBtn.addEventListener('click', () => {
   // refs.authModal.show;
   // onOpenModal();
 });
-// refs.authModalBtn.addEventListener('click', onOpenModal);
+refs.authModalBtn.addEventListener('click', onOpenModal);
 window.addEventListener('load', Film.renderFilmList);
 // refs.openModalBtn.addEventListener('click', onOpenModal);
 refs.filmForm.addEventListener('submit', filmSubmitHandler);
