@@ -28,7 +28,9 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Reg</h5>
+              <h5 class="modal-title" id="exampleModalLabel">
+                Enter your data
+              </h5>
               <button
                 type="button"
                 class="btn-close"
@@ -46,16 +48,31 @@
               "
               id="modal-btns-container"
             >
-              <button type="button" class="btn btn-dark" id="reg-btn" disabled>
+              <button
+                type="button"
+                class="btn btn-primary selected-btn"
+                id="reg-btn"
+              >
                 Registration
               </button>
-              <button type="button" class="btn btn-light" id="log-btn">
+              <button type="button" class="btn btn-primary" id="log-btn">
                 Log in
               </button>
             </div>
             <div class="modal-body">
-              <h6 id="modal-heading">Registration</h6>
-              <form>
+              <form id="modal-form">
+                <h6>Registration</h6>
+                <div class="mb-3">
+                  <label for="exampleInputText1" class="form-label"
+                    >Profile Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="exampleInputText1"
+                    aria-describedby="textHelp"
+                  />
+                </div>
                 <div class="mb-3">
                   <label for="exampleInputEmail1" class="form-label"
                     >Email</label
@@ -79,7 +96,7 @@
                 </div>
               </form>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Log</button>
+                <button type="submit" class="btn btn-success">Log</button>
               </div>
             </div>
           </div>

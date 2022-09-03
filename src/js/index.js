@@ -12,10 +12,10 @@ const refs = {
   // openModalBtn: document.getElementById('my-modal-btn'),
 };
 console.log(refs.authModalBtn);
-refs.authModalBtn.addEventListener('click', () => {
-  // refs.authModal.show;
-  // onOpenModal();
-});
+// refs.authModalBtn.addEventListener('click', () => {
+//   // refs.authModal.show;
+//   // onOpenModal();
+// });
 refs.authModalBtn.addEventListener('click', onOpenModal);
 window.addEventListener('load', Film.renderFilmList);
 // refs.openModalBtn.addEventListener('click', onOpenModal);

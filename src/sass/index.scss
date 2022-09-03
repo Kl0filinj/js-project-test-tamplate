@@ -1,6 +1,13 @@
 @import './common';
 @import '~bootstrap/scss/bootstrap';
 
+.btn-primary {
+    &:hover,
+    &:focus {
+        background-color: rgba(177, 47, 0, 0.6);
+    }
+}
+
 .container {
     max-width: 50%;
     padding: 25px 0;
@@ -17,4 +24,8 @@
     position: absolute;
     top: 15px;
     right: 15px;
+}
+
+.selected-btn {
+    background-color: rgba(177, 47, 0, 0.6);
 }
