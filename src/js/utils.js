@@ -118,3 +118,9 @@ export function regValidation(name, email, pas) {
   }
   return false;
 }
+
+export function exitBtnHandler() {
+  sessionStorage.clear();
+  document.getElementById('my-modal-btn').classList.remove('visually-hidden');
+  document.getElementById('nav-user-name').innerHTML = '';
+}

@@ -1,5 +1,5 @@
 import { getDatabase, ref, set, child, get } from 'firebase/database';
-import { regValidation } from './utils';
+import { regValidation, exitBtnHandler } from './utils';
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
@@ -66,6 +66,29 @@ export function autentification(evt) {
 
 function logIn(userData) {
   sessionStorage.setItem('userData', JSON.stringify(userData));
-  document.querySelector('.modal-backdrop').className = 'modal-backdrop fade';
-  document.getElementById('my-modal').className = 'modal fade';
+  document.querySelector('.btn-close').click();
+  renderCurrentUserName();
+  addEventListenerOnExitBtn();
+}
+
+export function renderCurrentUserName() {
+  const userNikName = JSON.parse(sessionStorage.getItem('userData')).userName;
+  const navUserName = document.getElementById('nav-user-name');
+
+  const html = `
+            <button
+            type="button"
+            class="btn btn-warning "
+            id="sign-out-btn"
+          >Выход
+          </button>
+          <p class="h1">Hello ,${userNikName} !</p>
+    `;
+  navUserName.innerHTML = html;
+  document.getElementById('my-modal-btn').classList.add('visually-hidden');
+}
+
+export function addEventListenerOnExitBtn() {
+  const exitBtn = document.getElementById('sign-out-btn');
+  exitBtn.addEventListener('click', exitBtnHandler);
 }

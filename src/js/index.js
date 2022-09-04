@@ -1,5 +1,9 @@
 import { validForm, onOpenModal } from './utils';
 import { Film } from './film';
+import {
+  renderCurrentUserName,
+  addEventListenerOnExitBtn,
+} from './autentification';
 import * as bootstrap from 'bootstrap';
 
 const refs = {
@@ -17,7 +21,13 @@ console.log(refs.authModalBtn);
 //   // onOpenModal();
 // });
 refs.authModalBtn.addEventListener('click', onOpenModal);
-window.addEventListener('load', Film.renderFilmList);
+window.addEventListener('load', () => {
+  if (sessionStorage.getItem('userData') !== null) {
+    Film.renderFilmList;
+    renderCurrentUserName();
+    addEventListenerOnExitBtn();
+  }
+});
 // refs.openModalBtn.addEventListener('click', onOpenModal);
 refs.filmForm.addEventListener('submit', filmSubmitHandler);
 refs.filmForm.addEventListener('input', () => {
