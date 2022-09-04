@@ -1,3 +1,5 @@
+import { registration, autentification } from './autentification';
+
 let regBtn;
 let logBtn;
 let closeModalBtn;
@@ -17,6 +19,8 @@ export function onOpenModal() {
 
   logBtn.addEventListener('click', toggleLogBtn);
 
+  modalForm.addEventListener('submit', registration);
+
   closeModalBtn.addEventListener('click', () => {
     regBtn.removeEventListener('click', toggleRegBtn);
     logBtn.removeEventListener('click', toggleLogBtn);
@@ -24,72 +28,93 @@ export function onOpenModal() {
 }
 
 function toggleRegBtn(evt) {
+  modalForm.removeEventListener('submit', autentification);
+  modalForm.addEventListener('submit', registration);
   evt.target.className += ' selected-btn';
   logBtn.className = 'btn btn-primary';
   const html = `
                   <h6>Registration</h6>
                   <div class="mb-3">
-                  <label for="exampleInputText1" class="form-label"
+                  <label for="reg-user-name" class="form-label"
                     >Profile Name</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="exampleInputText1"
+                    id="reg-user-name"
                     aria-describedby="textHelp"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label"
+                  <label for="modal-email" class="form-label"
                     >Email</label
                   >
                   <input
                     type="email"
                     class="form-control"
-                    id="exampleInputEmail1"
+                    id="modal-email"
                     aria-describedby="emailHelp"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label"
+                  <label for="modal-password" class="form-label"
                     >Password</label
                   >
                   <input
                     type="password"
                     class="form-control"
-                    id="exampleInputPassword1"
+                    id="modal-password"
                   />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Log</button>
                 </div>
   `;
   modalForm.innerHTML = html;
 }
 
 function toggleLogBtn(evt) {
+  modalForm.removeEventListener('submit', registration);
+  modalForm.addEventListener('submit', autentification);
   evt.target.className += ' selected-btn';
   regBtn.className = 'btn btn-primary';
   const html = `
                   <h6>Log in</h6>
                   <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label"
-                    >Email</label
+                  <label for="reg-user-name" class="form-label"
+                    >Profile Name</label
                   >
                   <input
-                    type="email"
+                    type="text"
                     class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
+                    id="reg-user-name"
+                    aria-describedby="textHelp"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label"
+                  <label for="modal-password" class="form-label"
                     >Password</label
                   >
                   <input
                     type="password"
                     class="form-control"
-                    id="exampleInputPassword1"
+                    id="modal-password"
                   />
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Log</button>
                 </div>
   `;
   modalForm.innerHTML = html;
+}
+
+export function regValidation(name, email, pas) {
+  let nameVal = /[a-zA-Z\s]+/;
+  let emailVal = /[a-zA-Z0-9]+@(gmail|yahoo|mail)\.com/;
+  let pasVal = /[a-zA-Z0-9]{5,}/;
+
+  if (nameVal.test(name) && emailVal.test(email) && pasVal.test(pas)) {
+    return true;
+  }
+  return false;
 }

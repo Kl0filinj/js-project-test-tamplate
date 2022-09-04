@@ -8,16 +8,32 @@
     <script type="module" src="./js/index.js"></script>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <p class="navbar-brand h1" href="#">Navbar</p>
+        
+          <div class="visually-hidden" style="text-align: center;">
+                      <button
+            type="button"
+            class="btn btn-warning "
+            id="sign-out-btn"
+          >Выход
+          </button>
+          <p class="h1">Hello ,Anonymous !</p>
+          </div>
+          <button
+            type="button"
+            class="btn btn-warning "
+            data-bs-toggle="modal"
+            data-bs-target="#my-modal"
+            id="my-modal-btn"
+          >
+            Вход
+          </button>
+        </div>
+      </div>
+    </nav>
     <div class="container">
-      <button
-        type="button"
-        class="btn btn-warning"
-        data-bs-toggle="modal"
-        data-bs-target="#my-modal"
-        id="my-modal-btn"
-      >
-        Вход
-      </button>
       <div
         class="modal fade"
         id="my-modal"
@@ -63,41 +79,39 @@
               <form id="modal-form">
                 <h6>Registration</h6>
                 <div class="mb-3">
-                  <label for="exampleInputText1" class="form-label"
+                  <label for="reg-user-name" class="form-label"
                     >Profile Name</label
                   >
                   <input
                     type="text"
                     class="form-control"
-                    id="exampleInputText1"
+                    id="reg-user-name"
                     aria-describedby="textHelp"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label"
-                    >Email</label
-                  >
+                  <label for="modal-email" class="form-label">Email</label>
                   <input
                     type="email"
                     class="form-control"
-                    id="exampleInputEmail1"
+                    id="modal-email"
                     aria-describedby="emailHelp"
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label"
+                  <label for="modal-password" class="form-label"
                     >Password</label
                   >
                   <input
                     type="password"
                     class="form-control"
-                    id="exampleInputPassword1"
+                    id="modal-password"
                   />
                 </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success">Log</button>
+                </div>
               </form>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-success">Log</button>
-              </div>
             </div>
           </div>
         </div>
