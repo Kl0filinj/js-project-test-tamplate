@@ -34,6 +34,7 @@ export function registration(evt) {
         userName: userName.value,
         email: email.value,
         password: password.value,
+        userFilmList: [],
       })
         .then(alert('User Successfuly registraited'))
         .then(document.getElementById('modal-form').reset())

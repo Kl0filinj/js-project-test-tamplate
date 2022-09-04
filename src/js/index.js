@@ -15,7 +15,6 @@ const refs = {
   authModal: document.getElementById('my-modal'),
   // openModalBtn: document.getElementById('my-modal-btn'),
 };
-console.log(refs.authModalBtn);
 // refs.authModalBtn.addEventListener('click', () => {
 //   // refs.authModal.show;
 //   // onOpenModal();
@@ -23,9 +22,12 @@ console.log(refs.authModalBtn);
 refs.authModalBtn.addEventListener('click', onOpenModal);
 window.addEventListener('load', () => {
   if (sessionStorage.getItem('userData') !== null) {
-    Film.renderFilmList;
+    console.log(111);
+    Film.renderFilmList();
     renderCurrentUserName();
     addEventListenerOnExitBtn();
+  } else {
+    Film.renderFilmList();
   }
 });
 // refs.openModalBtn.addEventListener('click', onOpenModal);
@@ -48,10 +50,21 @@ function filmSubmitHandler(evt) {
 
     refs.filmSubmitBtn.disabled = true;
     // async fetch
-    Film.createWithoutAuth(newFilm);
-    refs.filmName.value = '';
-    refs.filmRating.value = '';
-    refs.filmSubmitBtn.disabled = false;
-    Film.renderFilmList();
+    if (sessionStorage.getItem('userData') !== null) {
+      const currentUserName = JSON.parse(
+        sessionStorage.getItem('userData')
+      ).userName;
+      console.log(currentUserName);
+      Film.createWithAuth(newFilm, currentUserName);
+      refs.filmForm.reset();
+      refs.filmSubmitBtn.disabled = false;
+      Film.renderFilmList();
+      return;
+    } else {
+      Film.createWithoutAuth(newFilm);
+      refs.filmForm.reset();
+      refs.filmSubmitBtn.disabled = false;
+      Film.renderFilmList();
+    }
   }
 }

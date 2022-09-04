@@ -1,12 +1,35 @@
+import { initializeApp } from 'firebase/app';
+import { getDatabase, ref, set, child, get } from 'firebase/database';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyCv6MxU8A-pjcYfh7e--9UuG9oU8ESw1yo',
+  authDomain: 'test-template-f17b9.firebaseapp.com',
+  databaseURL:
+    'https://test-template-f17b9-default-rtdb.europe-west1.firebasedatabase.app',
+  projectId: 'test-template-f17b9',
+  storageBucket: 'test-template-f17b9.appspot.com',
+  messagingSenderId: '739422049395',
+  appId: '1:739422049395:web:61f14da0b2bfc36e7f8606',
+};
+
+const app = initializeApp(firebaseConfig);
+
 export class Film {
-  static firebaseConfig = {
-    apiKey: 'AIzaSyCv6MxU8A-pjcYfh7e--9UuG9oU8ESw1yo',
-    authDomain: 'test-template-f17b9.firebaseapp.com',
-    projectId: 'test-template-f17b9',
-    storageBucket: 'test-template-f17b9.appspot.com',
-    messagingSenderId: '739422049395',
-    appId: '1:739422049395:web:61f14da0b2bfc36e7f8606',
-  };
+  static createWithAuth(newFilm, userName) {
+    const db = getDatabase();
+    const dbRef = ref(db);
+    Film.createWithoutAuth(newFilm);
+    // let restFilms;
+    set(ref(db, `UsersList/${userName}/userFilmList/` + `${newFilm.title}`), {
+      filmTitle: newFilm.title,
+      filmRate: newFilm.rating,
+    }).catch(console.log);
+    get(child(dbRef, `UsersList/${userName}/` + 'userFilmList')).then(
+      snapshot => console.dir(snapshot.val())
+    );
+    // console.log(restFilms);
+  }
+
   static createWithoutAuth(newFilm) {
     const all = getFilmsFromLocalStorge();
     all.push(newFilm);
