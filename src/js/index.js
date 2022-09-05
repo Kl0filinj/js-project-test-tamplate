@@ -23,7 +23,10 @@ refs.authModalBtn.addEventListener('click', onOpenModal);
 window.addEventListener('load', () => {
   if (sessionStorage.getItem('userData') !== null) {
     console.log(111);
-    Film.renderFilmList();
+    Film.renderCurrentUserFilmList(
+      JSON.parse(sessionStorage.getItem('userData')).userName
+    );
+    // Film.renderFilmList();
     renderCurrentUserName();
     addEventListenerOnExitBtn();
   } else {
@@ -58,8 +61,7 @@ function filmSubmitHandler(evt) {
       Film.createWithAuth(newFilm, currentUserName);
       refs.filmForm.reset();
       refs.filmSubmitBtn.disabled = false;
-      Film.renderFilmList();
-      return;
+      Film.renderCurrentUserFilmList(currentUserName);
     } else {
       Film.createWithoutAuth(newFilm);
       refs.filmForm.reset();

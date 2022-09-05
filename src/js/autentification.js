@@ -1,6 +1,7 @@
 import { getDatabase, ref, set, child, get } from 'firebase/database';
 import { regValidation, exitBtnHandler } from './utils';
 import { initializeApp } from 'firebase/app';
+import { Film } from './film';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCv6MxU8A-pjcYfh7e--9UuG9oU8ESw1yo',
@@ -34,7 +35,7 @@ export function registration(evt) {
         userName: userName.value,
         email: email.value,
         password: password.value,
-        userFilmList: [],
+        // userFilmList: [{ start: 1 }],
       })
         .then(alert('User Successfuly registraited'))
         .then(document.getElementById('modal-form').reset())
@@ -57,6 +58,10 @@ export function autentification(evt) {
       console.log(password.value);
       if (dbpas === password.value) {
         alert(`You Successfuly enter in your accaunt  ${userName.value} !`);
+        // localStorage.removeItem('films');
+        // Film.renderCurrentUserFilmList(userName.value);
+        console.log(userName.value);
+        Film.renderCurrentUserFilmList(userName.value);
         logIn(snapshot.val());
       }
     } else {

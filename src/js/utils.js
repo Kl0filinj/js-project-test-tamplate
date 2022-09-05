@@ -1,4 +1,5 @@
 import { registration, autentification } from './autentification';
+import { Film } from './film';
 
 let regBtn;
 let logBtn;
@@ -121,6 +122,9 @@ export function regValidation(name, email, pas) {
 
 export function exitBtnHandler() {
   sessionStorage.clear();
+  localStorage.removeItem('films');
+  Film.renderFilmList();
+
   document.getElementById('my-modal-btn').classList.remove('visually-hidden');
   document.getElementById('nav-user-name').innerHTML = '';
 }
