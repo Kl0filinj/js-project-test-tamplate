@@ -2,6 +2,7 @@ import { getDatabase, ref, set, child, get } from 'firebase/database';
 import { regValidation, exitBtnHandler } from './utils';
 import { initializeApp } from 'firebase/app';
 import { Film } from './film';
+import Notiflix from 'notiflix';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCv6MxU8A-pjcYfh7e--9UuG9oU8ESw1yo',
@@ -23,13 +24,13 @@ export function registration(evt) {
   const email = document.getElementById('modal-email');
   const password = document.getElementById('modal-password');
   if (!regValidation(userName.value, email.value, password.value)) {
-    return alert('You filled form uncorrect');
+    return Notiflix.Notify.warning('You filled form uncorrect');
   }
   const dbRef = ref(db);
 
   get(child(dbRef, 'UsersList/' + userName.value)).then(snapshot => {
     if (snapshot.exists()) {
-      alert('User already exist !');
+      Notiflix.Notify.warning('User already exist !');
     } else {
       set(ref(db, 'UsersList/' + userName.value), {
         userName: userName.value,
@@ -37,7 +38,7 @@ export function registration(evt) {
         password: password.value,
         // userFilmList: [{ start: 1 }],
       })
-        .then(alert('User Successfuly registraited'))
+        .then(Notiflix.Notify.success('User Successfuly registraited'))
         .then(document.getElementById('modal-form').reset())
         .catch(console.log);
     }
@@ -57,7 +58,9 @@ export function autentification(evt) {
       console.log(dbpas);
       console.log(password.value);
       if (dbpas === password.value) {
-        alert(`You Successfuly enter in your accaunt  ${userName.value} !`);
+        Notiflix.Notify.success(
+          `You Successfuly enter in your accaunt  ${userName.value} !`
+        );
         // localStorage.removeItem('films');
         // Film.renderCurrentUserFilmList(userName.value);
         console.log(userName.value);
@@ -65,7 +68,7 @@ export function autentification(evt) {
         logIn(snapshot.val());
       }
     } else {
-      return alert('User not exist yet !');
+      return Notiflix.Notify.warning('User not exist yet !');
     }
   });
 }
