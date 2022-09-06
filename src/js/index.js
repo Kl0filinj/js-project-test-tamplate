@@ -22,11 +22,9 @@ const refs = {
 refs.authModalBtn.addEventListener('click', onOpenModal);
 window.addEventListener('load', () => {
   if (sessionStorage.getItem('userData') !== null) {
-    console.log(111);
     Film.renderCurrentUserFilmList(
       JSON.parse(sessionStorage.getItem('userData')).userName
     );
-    // Film.renderFilmList();
     renderCurrentUserName();
     addEventListenerOnExitBtn();
   } else {
@@ -57,7 +55,6 @@ function filmSubmitHandler(evt) {
       const currentUserName = JSON.parse(
         sessionStorage.getItem('userData')
       ).userName;
-      console.log(currentUserName);
       Film.createWithAuth(newFilm, currentUserName);
       refs.filmForm.reset();
       refs.filmSubmitBtn.disabled = false;

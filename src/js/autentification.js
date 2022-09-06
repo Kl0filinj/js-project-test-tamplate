@@ -55,15 +55,10 @@ export function autentification(evt) {
   get(child(dbRef, 'UsersList/' + userName.value)).then(snapshot => {
     if (snapshot.exists()) {
       let dbpas = snapshot.val().password;
-      console.log(dbpas);
-      console.log(password.value);
       if (dbpas === password.value) {
         Notiflix.Notify.success(
           `You Successfuly enter in your accaunt  ${userName.value} !`
         );
-        // localStorage.removeItem('films');
-        // Film.renderCurrentUserFilmList(userName.value);
-        console.log(userName.value);
         Film.renderCurrentUserFilmList(userName.value);
         logIn(snapshot.val());
       }

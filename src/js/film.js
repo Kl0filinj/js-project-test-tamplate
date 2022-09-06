@@ -24,9 +24,9 @@ export class Film {
       filmTitle: newFilm.title,
       filmRate: newFilm.rating,
     }).catch(console.log);
-    get(child(dbRef, `UsersList/${userName}/` + 'userFilmList')).then(
-      snapshot => console.dir(snapshot.val())
-    );
+    // get(child(dbRef, `UsersList/${userName}/` + 'userFilmList')).then(
+    //   snapshot => console.dir(snapshot.val())
+    // );
   }
 
   static createWithoutAuth(newFilm) {
@@ -49,7 +49,6 @@ export class Film {
     let list = '';
     get(child(dbRef, `UsersList/${userName}/` + 'userFilmList')).then(
       snapshot => {
-        console.log(snapshot.val());
         if (snapshot.exists()) {
           for (const key in snapshot.val()) {
             const element = snapshot.val()[key];
@@ -58,7 +57,6 @@ export class Film {
         <p class="h4">Название: ${element['filmTitle']}</p>
         <p class="h4">Рейтинг: <span class="rating">${element['filmRate']}</span></p>
     </li>`;
-            console.log(list);
           }
         } else {
           list = 'У вас ещё нету фильмов в библиотеке :(';
